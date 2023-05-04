@@ -12,8 +12,10 @@ import { Index } from '../components'
 
 export const Home = () => {
   const dispatch = useDispatch()
+  const userData = useSelector((state) => state.auth.data)
   const { posts, tags } = useSelector((state) => state.posts)
-  console.log(posts, tags)
+
+  console.log(userData, 'userData')
 
   const isPostsLoading = posts.status === 'loading'
   const isTagsLoading = tags.status === 'loading'
@@ -48,7 +50,7 @@ export const Home = () => {
                 viewsCount={obj.viewsCount}
                 commentsCount={3}
                 tags={obj.tags}
-                isEditable
+                isEditable={userData?._id === obj.user._id}
               />
             )
           )}
